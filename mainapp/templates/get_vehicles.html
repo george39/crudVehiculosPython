@@ -1,0 +1,49 @@
+{% extends 'layouts/layout.html' %}
+
+
+{% block content %}
+<div class="container p-3">
+    <div class="row">
+
+     <div class="row col-lg-4">
+        <form class="d-flex" method="GET">
+            <input class="form-control me-2" name="buscar" type="search" placeholder="Buscar por marca" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+     </div>
+    
+
+        <h1 class="text-center">Listado de vehículos</h1>
+            
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Linea</th>
+                    <th>Color</th>
+                    <th>Precio</th>
+                    <th>Editar</th>
+                    <th>Inabilitar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                {% if vehicle.visible == 1 %}
+                        <tr>
+                            <td>{{vehicle.brand}}</td>
+                            <td>{{vehicle.line}}</td>
+                            <td>{{vehicle.color}}</td>
+                            <td>{{vehicle.price}}</td>
+                            <td><a href="{% url 'edit' vehicle.id %}" class="btn btn-warning">Editar</a></td>
+                            <td><a href="{% url 'disable' vehicle.id %}" class="btn btn-danger">Inhabilitar</a></td>
+                        </tr>
+                {% endif%}        
+                        {% endfor %}    
+                    </tbody>
+                </table>
+    </div>
+</div>
+            
+    
+
+{% endblock %}

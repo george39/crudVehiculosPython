@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+        </div>
+    {% endif %}
+
+    <h1>Registro de vehículos</h1>
+
+    <form action="{% url 'create_full' %}" method="POST">
+        {% csrf_token %}
+        {% if message %}
+            <div class="alert alert-success" role="alert">
+                Vehiculo registrado con éxito
+            </div>
+        {% endif %}
+
+        {{ form|crispy }}
+
+        <div class="form-group p-2 text-center">
+                    
+            <input type="submit" value="Guardar" class="btn btn-success">
+        </div>
+
+    </form>
+
+
+{% endblock %}
+
+
+        

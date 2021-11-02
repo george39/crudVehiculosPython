@@ -1,0 +1,40 @@
+{% extends 'layouts/layout.html' %}
+
+
+{% block content %}
+<div class="container p-3">
+    <div class="row">
+
+        <h1 class="text-center">Listado de vehículos inhabilitados</h1>
+            
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Linea</th>
+                    <th>Color</th>
+                    <th>Precio</th>                    
+                    <th>Habilitar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                {% if vehicle.visible == 0 %}
+                        <tr>
+                            <td>{{vehicle.brand}}</td>
+                            <td>{{vehicle.line}}</td>
+                            <td>{{vehicle.color}}</td>
+                            <td>{{vehicle.price}}</td>
+                            
+                            <td><a href="{% url 'enable' vehicle.id %}" class="btn btn-primary">Habilitar</a></td>
+                        </tr>
+                {% endif%}        
+                        {% endfor %}    
+                    </tbody>
+                </table>
+    </div>
+</div>
+            
+    
+
+{% endblock %}
